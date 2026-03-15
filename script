@@ -479,9 +479,8 @@ end
 local ScreenGui=inst("ScreenGui",{Name="RivalsSkinChangerV9",ResetOnSpawn=false,
     ZIndexBehavior=Enum.ZIndexBehavior.Sibling,IgnoreGuiInset=true},PlayerGui)
 local Root=inst("Frame",{Size=UDim2.new(0,740,0,480),Position=UDim2.new(0.5,-370,0.5,-240),
-    BackgroundTransparency=1,BorderSizePixel=0},ScreenGui)
-local RootBG=inst("Frame",{Size=UDim2.new(1,0,1,0),BackgroundColor3=T.BG,BorderSizePixel=0},Root)
-corner(RootBG,10);stroke(RootBG,T.BORDER,1)
+    BackgroundColor3=T.BG,BorderSizePixel=0,ClipsDescendants=true},ScreenGui)
+corner(Root,10)
 -- Overlay holds the border so it renders ABOVE all children
 local BorderOverlay=inst("Frame",{Size=UDim2.new(1,0,1,0),BackgroundTransparency=1,
     BorderSizePixel=0,ZIndex=100},Root)
@@ -533,13 +532,9 @@ inst("TextLabel",{Size=UDim2.new(1,0,0,18),Position=UDim2.new(0,0,1,-22),Backgro
     Text="V1 Beta",Font=Enum.Font.Gotham,TextSize=9,
     TextColor3=T.MUT,TextXAlignment=Enum.TextXAlignment.Center},Sidebar)
 
-local Sidebar=inst("Frame",{Size=UDim2.new(0,SBAR_W,1,-38),Position=UDim2.new(0,0,0,38),
-    BackgroundColor3=T.SIDEBAR,BorderSizePixel=0},Root)
-corner(Sidebar,10)
--- Cover the top-left inner corner gap left by UICorner
-inst("Frame",{Size=UDim2.new(0,10,0,10),Position=UDim2.new(0,0,0,0),
-    BackgroundColor3=T.SIDEBAR,BorderSizePixel=0},Sidebar)
-inst("Frame",{Size=UDim2.new(0,1,1,0),Position=UDim2.new(1,-1,0,0),BackgroundColor3=T.LINE,BorderSizePixel=0},Sidebar)
+local SidebarList=inst("Frame",{Size=UDim2.new(1,0,1,-28),BackgroundTransparency=1},Sidebar)
+inst("UIListLayout",{SortOrder=Enum.SortOrder.LayoutOrder,Padding=UDim.new(0,2)},SidebarList)
+pad(SidebarList,10,8,6,8)
 
 local Content=inst("Frame",{Size=UDim2.new(1,-SBAR_W,1,-38),Position=UDim2.new(0,SBAR_W,0,38),
     BackgroundTransparency=1,ClipsDescendants=true},Root)
